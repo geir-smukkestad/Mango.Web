@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Mango.Services.CouponAPI.Data;
 using Mango.Services.CouponAPI.Models;
-using Mango.Services.CouponAPI.Models.Dto;
+using Mango.Common.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
 

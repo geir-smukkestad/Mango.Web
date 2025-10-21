@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Mango.Services.CouponAPI.Models;
-using Mango.Services.CouponAPI.Models.Dto;
+using Mango.Common.Dto;
 
 namespace Mango.Services.CouponAPI
 {
