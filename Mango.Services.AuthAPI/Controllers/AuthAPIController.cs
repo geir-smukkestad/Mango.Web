@@ -1,5 +1,5 @@
 ﻿using Mango.Common.Dto;
-using Mango.Services.AuthAPI.Models.Dto;
+using Mango.Common.Dto.Auth;
 using Mango.Services.AuthAPI.Service.IService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

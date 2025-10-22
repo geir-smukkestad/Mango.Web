@@ -25,4 +25,8 @@
     <ProjectReference Include="..\Mango.Common\Mango.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Dto\" />
+  </ItemGroup>
+
 </Project>
