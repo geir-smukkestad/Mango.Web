@@ -39,7 +39,7 @@ namespace Mango.Services.AuthAPI.Controllers
             if (loginResponse.User == null)
             {
                 _response.IsSuccessFul = false;
-                _response.Message = "Username of password is incorrect";
+                _response.Message = "Username or password is incorrect";
                 return BadRequest(_response);
             }
             _response.Result = loginResponse;
