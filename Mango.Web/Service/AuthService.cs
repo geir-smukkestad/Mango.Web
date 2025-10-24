@@ -37,7 +37,7 @@ namespace Mango.Web.Service
                 Url = StaticDetails.AuthAPIBase + "/api/auth/login"
             };
 
-            return await _baseService.SendAsync(req);
+            return await _baseService.SendAsync(req, withBearer: false);
         }
 
         public async Task<ResponseDto> RegisterAsync(RegistrationRequestDto registrationRequestDto)
@@ -49,7 +49,7 @@ namespace Mango.Web.Service
                 Url = StaticDetails.AuthAPIBase + "/api/auth/register"
             };
 
-            return await _baseService.SendAsync(req);
+            return await _baseService.SendAsync(req, withBearer: false);
         }
     }
 }
