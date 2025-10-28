@@ -2,6 +2,7 @@
 using Mango.Common.Dto;
 using Mango.Services.ProductAPI.Data;
 using Mango.Services.ProductAPI.Models;
+using Mango.Services.ProductAPI.Models.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +11,6 @@ namespace Mango.Services.ProductAPI.Controllers
 {
     [Route("api/product")]
     [ApiController]
-    [Authorize]
     public class ProductAPIController : ControllerBase
     {
         private readonly AppDbContext _db;
