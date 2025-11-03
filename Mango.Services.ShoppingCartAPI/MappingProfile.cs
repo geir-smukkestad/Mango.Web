@@ -8,7 +8,13 @@ namespace Mango.Services.ShoppingCartAPI
     {
         public MappingProfile()
         {
-            CreateMap<CartHeader, CartHeaderDto>().ReverseMap();
+            CreateMap<CartHeader, CartHeaderDto>()
+                .ForMember(dest => dest.FirstName, opt => opt.Ignore())
+                .ForMember(dest => dest.LastName, opt => opt.Ignore())
+                .ForMember(dest => dest.Phone, opt => opt.Ignore())
+                .ForMember(dest => dest.Email, opt => opt.Ignore())
+                .ReverseMap();
+
             CreateMap<CartDetails, CartDetailsDto>().ReverseMap();
         }
     }

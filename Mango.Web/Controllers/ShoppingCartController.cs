@@ -3,6 +3,7 @@ using Mango.Web.Models;
 using Mango.Web.Service.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.JSInterop;
 using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
 
@@ -41,6 +42,21 @@ namespace Mango.Web.Controllers
             if (response != null && response.IsSuccessFul)
             {
                 TempData["success"] = "Coupon code successfully applied";
+                return RedirectToAction(nameof(ShoppingCartIndex));
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EmailCart(CartDto cartDto)
+        {
+            CartDto cart = await LoadCartDtoBaseOnLoggedInUser();
+            cart.CartHeader.Email = User.Claims.Where(u => u.Type == JwtRegisteredClaimNames.Email)?.FirstOrDefault()?.Value;
+
+            ResponseDto? response = await _shoppingCartService.EmailCart(cart);
+            if (response != null && response.IsSuccessFul)
+            {
+                TempData["success"] = "Email will be processed and sent shortly";
                 return RedirectToAction(nameof(ShoppingCartIndex));
             }
             return View();
