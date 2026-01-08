@@ -69,9 +69,9 @@ namespace Mango.Web.Controllers
             return View(orderId);
         }
 
-        public async Task<IActionResult> Remove(int cartDetailsId)
+        public async Task<IActionResult> Remove(int cartDetailId)
         {
-            ResponseDto? response = await _shoppingCartService.RemoveFromCartAsync(cartDetailsId);
+            ResponseDto? response = await _shoppingCartService.RemoveFromCartAsync(cartDetailId);
             if (response != null && response.IsSuccessFul)
             {
                 TempData["success"] = "Item successfully removed from cart";
