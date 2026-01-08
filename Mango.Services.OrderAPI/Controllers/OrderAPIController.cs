@@ -112,5 +112,35 @@ namespace Mango.Services.OrderAPI.Controllers
             }
             return _response;
         }
+
+        [Authorize]
+        [HttpPost("ValidateStripeSession")]
+        public async Task<ResponseDto> ValidateStripeSession([FromBody] int orderHeaderId)
+        {
+            try
+            {
+                OrderHeader orderHeader = _db.OrderHeaders.First(o => o.OrderHeaderId == orderHeaderId);
+                
+                var service = new Stripe.Checkout.SessionService();
+                Stripe.Checkout.Session session = service.Get(orderHeader.StripeSessionId);
+
+                var paymentIntentService = new Stripe.PaymentIntentService();
+                PaymentIntent paymentIntent = paymentIntentService.Get(session.PaymentIntentId);
+                if (paymentIntent.Status == "succeeded")
+                {
+                    orderHeader.PaymentIntentId = paymentIntent.Id;
+                    orderHeader.Status = StaticDetails.Status_Approved;
+                    _db.SaveChanges();
+
+                    _response.Result = _mapper.Map<OrderHeaderDto>(orderHeader);
+                }
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccessFul = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+        }
     }
 }
